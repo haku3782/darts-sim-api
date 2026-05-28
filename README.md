@@ -1,3 +1,4 @@
+```mermaid
 graph TD
     %% 登場人物
     Dev((あなた<br/>開発者))
@@ -20,12 +21,13 @@ graph TD
     end
 
     %% デプロイのフロー（裏側）
-    Dev -->|1. コードをPush| Repo
-    Repo -->|2. トリガー| Actions
-    Actions -->|3. テスト合格でデプロイ| Spring
-    Repo -->|Vercelが自動検知してデプロイ| React
+    Dev -->|"1. コードをPush"| Repo
+    Repo -->|"2. トリガー"| Actions
+    Actions -->|"3. テスト合格でデプロイ"| Spring
+    Repo -->|"Vercelが自動検知してデプロイ"| React
 
     %% ユーザーのフロー（表側）
-    User -->|A. サイトにアクセス| React
-    React -->|B. REST API (JSON)<br/>ダーツの計算を依頼| Spring
-    Spring -.->|C. 計算結果を返す| React
+    User -->|"A. サイトにアクセス"| React
+    React -->|"B. REST API (JSON)<br/>ダーツの計算を依頼"| Spring
+    Spring -.->|"C. 計算結果を返す"| React
+```
