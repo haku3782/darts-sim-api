@@ -8,12 +8,12 @@
 		<version>4.0.6</version>
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
-	<groupId>com.example</groupId>
-	<artifactId>demo</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
-	<name/>
-	<description/>
-	<url/>
+<groupId>com.example</groupId>
+    <artifactId>darts-sim-api</artifactId>
+    <version>0.0.1-SNAPSHOT</version>
+    <name>darts-sim-api</name>
+    <description>Backend API for Darts Physics Simulator</description>
+    <url/>
 	<licenses>
 		<license/>
 	</licenses>
