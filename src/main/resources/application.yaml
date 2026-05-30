@@ -1,3 +1,12 @@
 spring:
   application:
     name: darts-sim-api
+  datasource:
+    url: jdbc:postgresql://darts_user:TYirEOIpzEkQX2mh5WPp7XkrdXQFAWy6@dpg-d8d5ukn40ujc73cb4n5g-a.oregon-postgres.render.com/darts_db_82uy
+    username: darts_user
+    password: TYirEOIpzEkQX2mh5WPp7XkrdXQFAWy6
+    driver-className: org.postgresql.Driver
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
