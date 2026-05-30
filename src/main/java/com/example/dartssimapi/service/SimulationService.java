@@ -3,6 +3,10 @@ package com.example.dartssimapi.service;
 import com.example.dartssimapi.dto.SimulationDto.SimulationRequest;
 import com.example.dartssimapi.dto.SimulationDto.SimulationResponse;
 import com.example.dartssimapi.dto.SimulationDto.TrajectoryPoint;
+import com.example.dartssimapi.repository.SimulationRecordRepository;
+import com.example.dartssimapi.entity.SimulationRecord;
+import org.springframework.data.domain.Sort;
+
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -15,6 +19,13 @@ public class SimulationService {
     private static final double GRAVITY = 9.80665;
     // タイムステップ (秒) - 0.005秒ごとに位置を計算
     private static final double TIME_STEP = 0.005;
+
+    // DB保存用 Repositoryを使えるようにする
+    private final SimulationRecordRepository repository;
+
+    public SimulationService(SimulationRecordRepository repository) {
+        this.repository = repository;
+    }
 
     public SimulationResponse runSimulation(SimulationRequest request) {
         List<TrajectoryPoint> trajectory = new ArrayList<>();
@@ -92,6 +103,15 @@ public class SimulationService {
                     p2.z()));
         }
 
+        // ▼ 追加: 計算が終わったら、その条件をデータベースに保存する
+        SimulationRecord record = new SimulationRecord(speedMs, angleRad, dragCoeff);
+        repository.save(record);
+
         return new SimulationResponse(trajectory);
+    }
+
+    // ▼ 追加: 履歴を新しい順で全件取得するメソッド
+    public List<SimulationRecord> getHistory() {
+        return repository.findAll(Sort.by(Sort.Direction.DESC, "createdAt"));
     }
 }

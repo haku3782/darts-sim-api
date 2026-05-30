@@ -5,6 +5,9 @@ import com.example.dartssimapi.dto.SimulationDto.SimulationResponse;
 import com.example.dartssimapi.service.SimulationService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import com.example.dartssimapi.entity.SimulationRecord;
+
+import java.util.List;
 
 @RestController
 @RequestMapping("/api")
@@ -23,5 +26,11 @@ public class SimulationController {
         // 本物の物理演算を実行して結果を返す
         SimulationResponse response = simulationService.runSimulation(request);
         return ResponseEntity.ok(response);
+    }
+
+    // ▼ 追加: 履歴取得API
+    @GetMapping("/history")
+    public List<SimulationRecord> getHistory() {
+        return simulationService.getHistory();
     }
 }
